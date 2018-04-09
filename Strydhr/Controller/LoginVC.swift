@@ -14,7 +14,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var emailTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
     
-
+//    let defaultValues = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,16 +34,16 @@ class LoginVC: UIViewController {
 
 
         AuthService.instance.login(withEmail: email, andPassword: password) { (success) in
-            if success {
+            if success{
+        
                 OperationQueue.main.addOperation({
                     self.performSegue(withIdentifier: "loginsegue", sender: self)
                 })
+
             }else{
-                print("login failed")
+                print("login Failed")
             }
         }
-
-
       
     }
     

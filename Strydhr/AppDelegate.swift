@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let defaultValues = UserDefaults.standard
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        if (defaultValues.string(forKey: "email") != nil){
+            let feedVC = storyboard.instantiateViewController(withIdentifier: "FeedVC")
+            window?.makeKeyAndVisible()
+            window?.rootViewController?.present(feedVC, animated: true, completion: nil)
+        }
         return true
     }
 

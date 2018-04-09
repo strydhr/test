@@ -7,13 +7,22 @@
 //
 
 import UIKit
+import Alamofire
 
 class FeedVC: UIViewController {
 
-    @IBOutlet var userEmailTxt: UIView!
+  
+    @IBOutlet weak var emailLabel: UILabel!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let defaultValues = UserDefaults.standard
+        if let email = defaultValues.string(forKey: "email"){
+            emailLabel.text = email
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,6 +31,9 @@ class FeedVC: UIViewController {
     }
 
     @IBAction func logOutBtnPressed(_ sender: Any) {
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        UserDefaults.standard.synchronize()
+        dismiss(animated: true, completion: nil)
     }
     
 }
